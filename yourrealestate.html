@@ -17,7 +17,7 @@
         /* ---- reset ---- */ 
         .body{ margin:0; font:normal 75% Arial, Helvetica, sans-serif; }
         .canvas{ display: block; vertical-align: bottom; } /* ---- particles.js container ---- */ 
-        #particles-js{ position:absolute; width: 100%; height: 140%; background-color: #2fbe4e; background-image: url(""); background-repeat: no-repeat; background-size: cover; background-position: 50% 50%; }
+        #particles-js{ position:absolute; width: 100%; height: 160%; background-color: #27959C; background-image: url(""); background-repeat: no-repeat; background-size: cover; background-position: 50% 50%; }
     </style>
   </head>
 
@@ -32,28 +32,28 @@
       
       <v-container fluid v-bind:class="widther" v-bind:style="fullwidthfunc">
 
-            <h1 class="display-1 font-weight-light white--text my-2">Startup Real Estate</h1>
-            <h1 class="headline font-weight-light white--text my-2">How to scale up and when you've scaled out</h1>
+            <h1 class="display-1 font-weight-regular white--text my-2">Startup Real Estate</h1>
+            <h1 class="headline font-weight-regular white--text my-2">How to scale up and when you've scaled out</h1>
 
         <v-stepper v-model="stepper" class="elevation-0" style="background-color: rgba(0, 0, 0, 0)">
                 <v-stepper-header style="background-color: rgba(0, 0, 0, 0)" class="elevation-0">
-                <v-stepper-step color="green darken-2" :complete="stepper > 0" step="0"><h2 class="headline font-weight-light white--text">Intro</h2></v-stepper-step>
+                <v-stepper-step color="teal darken-2" :complete="stepper > 0" step="0"><h2 class="headline font-weight-regular white--text">Intro</h2></v-stepper-step>
     
                 <v-divider class="white"></v-divider>
 
-                  <v-stepper-step color="green darken-2" :complete="stepper > 1" step="1"><h2 class="headline font-weight-light white--text">Size</h2></v-stepper-step>
+                  <v-stepper-step color="teal darken-2" :complete="stepper > 1" step="1"><h2 class="headline font-weight-regular white--text">Size</h2></v-stepper-step>
             
                   <v-divider class="white"></v-divider>
             
-                  <v-stepper-step color="green darken-2" :complete="stepper > 2" step="2"><h2 class="headline font-weight-light white--text">Info</h2></v-stepper-step>
+                  <v-stepper-step color="teal darken-2" :complete="stepper > 2" step="2"><h2 class="headline font-weight-regular white--text">Info</h2></v-stepper-step>
             
                   <v-divider class="white"></v-divider>
  
-                  <v-stepper-step color="green darken-2" :complete="stepper > 3" step="3"><h2 class="headline font-weight-light white--text">What matters</h2></v-stepper-step>
+                  <v-stepper-step color="teal darken-2" :complete="stepper > 3" step="3"><h2 class="headline font-weight-regular white--text">What matters</h2></v-stepper-step>
             
                   <v-divider class="white"></v-divider>
             
-                  <v-stepper-step color="green darken-2" step="4"><h2 class="headline font-weight-light white--text">The real estate you need</h2></v-stepper-step>
+                  <v-stepper-step color="teal darken-2" step="4"><h2 class="headline font-weight-regular white--text">The real estate you need</h2></v-stepper-step>
                 </v-stepper-header>
             
                 <v-stepper-items style="min-height:60%">
@@ -63,7 +63,7 @@
                             
                                 <v-divider class="my-2 white"></v-divider>
                                 <!--change-->
-                                <div class="subheading font-weight-light white--text">When you’re the CEO of a rising startup, real estate often takes a backseat to driving the business forward. But should it? Tech giants have started in a garage or a dorm room—unconventional spaces that have become part of the DIY mythos of Silicon Valley. But in reality, your space should be a platform for you to test, explore and scale, because your environment says a lot about you, and influences your thinking, your culture and your brand.
+                                <div class="subheading font-weight-regular white--text">When you’re the CEO of a rising startup, real estate often takes a backseat to driving the business forward. But should it? Tech giants have started in a garage or a dorm room—unconventional spaces that have become part of the DIY mythos of Silicon Valley. But in reality, your space should be a platform for you to test, explore and scale, because your environment says a lot about you, and influences your thinking, your culture and your brand.
                                 </br></br>Whether you’re a firm of two, 25 or 100, here’s the rough guide to real estate that rolls with the punches.
                                         </div>
                                 <v-divider class="my-2 white"></v-divider>
@@ -74,7 +74,7 @@
                     </v-layout>
                     <v-layout justify-center>
                             <v-btn
-                              color="green darken-2"
+                              color="teal darken-2"
                               @click="stepper=1"
                               large
                               >
@@ -88,12 +88,12 @@
                   <v-stepper-content step="1" v-bind:class="widther">
                         <v-layout justify-center text-xs-center class="pa-3">
                                 <v-flex xs12>
-                                    <h2 class="headline font-weight-light pa-1 my-3 white--text">First, how big are you today?</h2>
+                                    <h2 class="headline font-weight-regular pa-1 my-3 white--text">First, how big are you today?</h2>
 
                                     <v-layout d-flex column>
 
                                       <v-flex v-for='sizeoption in sizeoptions' xs12 md3>
-                                        <v-btn xs12 md3 :depressed='sizeoption==sizeselection' large :color="((sizeoption==sizeselection) ? 'green darken-2' : '')" v-bind:class="((sizeoption==sizeselection) ? 'white--text my-2 text-none subheading' : 'green--text text--darken-2 text-none subheading')" @click='sizeselection = sizeoption'>{{sizeoption}}</v-button>
+                                        <v-btn xs12 md3 :depressed='sizeoption==sizeselection' large :color="((sizeoption==sizeselection) ? 'teal darken-2' : '')" v-bind:class="((sizeoption==sizeselection) ? 'white--text my-2 text-none subheading' : 'teal--text text--darken-2 text-none subheading')" @click='sizeselection = sizeoption'>{{sizeoption}}</v-button>
                                       
                                       </v-flex>
 
@@ -103,7 +103,7 @@
 
                                         <v-btn
                                           :disabled="!valid"
-                                          color="green darken-2"
+                                          color="teal darken-2"
                                           @click="biggerboat"
                                           large
                                           >
@@ -127,27 +127,27 @@
                                   <h3 class="headline mb-0">We're gonna need a bigger boat.</h3>
                                 </v-card-title>
                                 <v-divider></v-divider>
-                                <v-card-text class="subheading font-weight-light my-0">Your real estate issues are unique to your company and business model, and so should be your solution. You should work with one of our professionals.</v-card-text>
+                                <v-card-text class="subheading font-weight-regular my-0">Your real estate issues are unique to your company and business model, and so should be your solution. You should work with one of our professionals.</v-card-text>
 
                                 <v-layout d-flex>
                                     <v-flex xs12 md6 class="ma-2">
-                                      <h2 class="subheading mx-1 font-weight-light">If you are on the west coast:</h2>
+                                      <h2 class="subheading mx-1 font-weight-regular">If you are on the west coast:</h2>
                                       <v-card-text class="pa-1 subheading">
-                                        Lukas Ault <a href="mailto:Lukas.Ault@cbre.com" style="text-decoration: none;"><v-icon color="green darken-2">mail_outline</v-icon></a>
+                                        Lukas Ault <a href="mailto:Lukas.Ault@cbre.com" style="text-decoration: none;"><v-icon color="teal darken-2">mail_outline</v-icon></a>
                                       </v-card-text>
                                       
                                     </v-flex>
                                     <v-flex xs12 md6 class="ma-2">
-                                        <h2 class="subheading mx-1  font-weight-light">If you are on the east coast:</h2>
+                                        <h2 class="subheading mx-1  font-weight-regular">If you are on the east coast:</h2>
                                         <v-card-text class="pa-1 subheading">
-                                          Marshall O'Moore <a href="mailto:marshall.o'moore@cbre.com" style="text-decoration: none;"><v-icon color="green darken-2">mail_outline</v-icon></a>
+                                          Marshall O'Moore <a href="mailto:marshall.o'moore@cbre.com" style="text-decoration: none;"><v-icon color="teal darken-2">mail_outline</v-icon></a>
                                         </v-card-text>
                                       
                                     </v-flex>
                                   </v-layout>
                                   <v-layout justify-center>
                                 <v-btn
-                                  color="green"
+                                  color="teal darken-2"
                                   @click="biggerboatclose"
                                   large
                                   >
@@ -162,14 +162,14 @@
             
                   <v-stepper-content step="2" v-bind:class="widther">
                     
-                        <h2 class="headline font-weight-light pa-1 my-2 text-xs-center white--text">Now, tell me a little about yourself.</h2>
+                        <h2 class="headline font-weight-regular pa-1 my-2 text-xs-center white--text">Now, tell me a little about yourself.</h2>
                         <v-layout justify-center fill-height text-xs-center v-bind="binding" v-bind:style="minisize" ref="qbox">
                           
                           <v-flex xs12 md6 v-bind:class="widtherright" style="max-height:95%;">
-                                <h2 class="subheading font-weight-light white--text">In order of importance, please pick five statements:</h2>
+                                <h2 class="subheading font-weight-regular white--text">In order of importance, please pick five statements:</h2>
                                 <div v-bind:style="minisize2">
                             <transition-group name = "sentence">
-                            <v-card light v-for="sentence in sentences" v-if="sentence.unselected" :key="sentence.id" color="green darken-2" class="elevation-2">
+                            <v-card light v-for="sentence in sentences" v-if="sentence.unselected" :key="sentence.id" color="teal darken-2" class="elevation-2">
                               <v-card-text light v-on:click="flipstatusun(sentence.id)" class="sentence white--text my-2 pa-1 body-2">{{sentence.text}}</v-card-text>
                             </v-card>
                             </transition-group>
@@ -179,7 +179,7 @@
                         
                 
                           <v-flex xs12 md6 v-bind:class="widtherleft">
-                            <h2 class="subheading font-weight-light white--text">You've said:</h2>
+                            <h2 class="subheading font-weight-regular white--text">You've said:</h2>
                               <transition-group name = "sentence">
                                   <v-layout justify-center text-xs-center align-center class="ma-0 pa-0" v-for="sentence in sortedSentences" v-if="!sentence.unselected" :key="sentence.id" class="sentence" v-on:click="flipstatussel(sentence.id)">
                                     <v-flex
@@ -188,7 +188,7 @@
                                     </v-flex>
                                     <v-flex
                                     xs10>
-                                    <v-card light color="green darken-2">
+                                    <v-card light color="teal darken-2">
                                         <v-card-text light class="white--text my-1 pa-1 body-1 elevation-1">{{sentence.text}}</v-card-text>
                                     </v-card>
                                     </v-flex>
@@ -200,7 +200,7 @@
 
                         <v-layout align-end justify-center>
                                 <v-btn
-                                color="green darken-2"
+                                color="teal darken-2"
                                 @click="postandmoveon"
                                 large
                                 >
@@ -213,7 +213,7 @@
                       <v-container fluid grid-list-md v-bind:class="widther">
                     <v-layout v-bind="binding" d-flex justify-center v-if="sizetodisplay">
                         <v-flex xs12 md6>
-                            <div class="subheading font-weight-light pa-1 white--text"> {{sizetodisplay.firstparagraph}}</div>
+                            <div class="subheading font-weight-regular pa-1 white--text"> {{sizetodisplay.firstparagraph}}</div>
                         </v-flex>
                         <v-flex xs12 md6>
                             <v-img
@@ -225,11 +225,11 @@
                     <v-layout v-bind="binding" d-flex justify-center v-if="sizetodisplay">
                             <v-flex xs12 md4 class="ma-0">
                                 <v-card color="white">
-                                    <div class="subheading green darken-2 white--text font-weight-light ma-0 pa-1">Your real estate should be</div>
+                                    <div class="subheading teal darken-2 white--text font-weight-regular ma-0 pa-1">Your real estate should be</div>
                                     <v-divider color="white"></v-divider>
                                     <v-card-text v-for="point in sizetodisplay.blockone" class="pa-1">
-                                        <span class="group green--text text--darken-2 font-weight-light body-2">
-                                        <v-icon light color="green darken-2">{{point.icon}}</v-icon>
+                                        <span class="group teal--text text--darken-2 font-weight-regular body-2">
+                                        <v-icon light color="teal darken-2">{{point.icon}}</v-icon>
                                         {{point.text}}
                                         </span>
                                     </v-card-text>
@@ -238,11 +238,11 @@
                             <v-flex xs12 md4 class="ma-0">
                                     <v-card color="white">
                                         
-                                        <div class="subheading green darken-2 white--text font-weight-light ma-0 pa-1">It's time to move when</div>
+                                        <div class="subheading teal darken-2 white--text font-weight-regular ma-0 pa-1">It's time to move when</div>
                                         <v-divider color="white"></v-divider>
                                         <v-card-text v-for="point in sizetodisplay.blocktwo" class="pa-1">
-                                            <span class="group green--text text--darken-2 font-weight-light body-2">
-                                            <v-icon light color="green darken-2">{{point.icon}}</v-icon>
+                                            <span class="group teal--text text--darken-2 font-weight-regular body-2">
+                                            <v-icon light color="teal darken-2">{{point.icon}}</v-icon>
                                             {{point.text}}
                                             </span>
                                         </v-card-text>
@@ -250,11 +250,11 @@
                                 </v-flex>
                                 <v-flex xs12 md4 class="ma-0">
                                         <v-card color="white">
-                                                <div class="subheading green darken-2 white--text font-weight-light ma-0 pa-1">Start thinking about</div>
+                                                <div class="subheading teal darken-2 white--text font-weight-regular ma-0 pa-1">Start thinking about</div>
                                                 <v-divider color="white"></v-divider>
                                             <v-card-text v-for="point in sizetodisplay.blockthree" class="pa-1">
-                                                <span class="group green--text text--darken-2 font-weight-light body-2">
-                                                <v-icon light color="green darken-2">{{point.icon}}</v-icon>
+                                                <span class="group teal--text text--darken-2 font-weight-regular body-2">
+                                                <v-icon light color="teal darken-2">{{point.icon}}</v-icon>
                                                 {{point.text}}
                                                 </span>
                                             </v-card-text>
@@ -266,7 +266,7 @@
             
                     <v-layout align-end justify-center>
                             <v-btn
-                            color="green darken-2"
+                            color="teal darken-2"
                             @click="stepper = 4"
                             large
                             >
@@ -292,45 +292,45 @@
                                               <h3 class="headline mb-0 grey-darken-3">Your #{{renderoption+1}}: {{rightoption.fullName}}</h3>
                                             </v-card-title>
                                             <v-divider></v-divider>
-                                            <v-card-text class="subheading font-weight-light my-0">{{rightoption.text}}</v-card-text>
+                                            <v-card-text class="subheading font-weight-regular my-0">{{rightoption.text}}</v-card-text>
                   
                                             <v-layout d-flex v-bind="binding">
                                               <v-flex xs12 md6 class="ma-2">
                                                 <h2 class="subheading mx-1">Pros</h2>
                                                 <v-card-text v-for="point in rightoption.pros" class="pa-1">
-                                                    <span class="group green--text text--darken-2 font-weight-light body-2">
-                                                    <v-icon light color="green darken-2">{{point.icon}}</v-icon>
+                                                    <span class="group teal--text text--darken-2 font-weight-regular body-2">
+                                                    <v-icon light color="teal darken-2">{{point.icon}}</v-icon>
                                                     {{point.text}}
                                                   </span>
                                               </v-flex>
                                               <v-flex xs12 md6 class="ma-2">
                                                   <h2 class="subheading mx-1">Cons</h2>
                                                   <v-card-text v-for="point in rightoption.cons" class="pa-1">
-                                                      <span class="group green--text text--darken-2 font-weight-light body-2">
-                                                      <v-icon light color="green darken-2">{{point.icon}}</v-icon>
+                                                      <span class="group teal--text text--darken-2 font-weight-regular body-2">
+                                                      <v-icon light color="teal darken-2">{{point.icon}}</v-icon>
                                                       {{point.text}}
                                                     </span>
                                               </v-flex>
                                             </v-layout>
                                             <v-divider  v-if='rightoption.checkout' class="my-2"></v-divider>
-                                            <v-layout justify-center v-if='rightoption.checkout'><h2 class="subheading font-weight-light">Explore more:</h2></v-layout>
+                                            <v-layout justify-center v-if='rightoption.checkout'><h2 class="subheading font-weight-regular">Explore more:</h2></v-layout>
                                             <v-layout v-bind="binding" class="my-2" justify-center v-if='rightoption.checkout'>
                                               
-                                              <v-btn depressed v-for='point in rightoption.checkout' class="green--text text--darken-2 my-1" :href='point.source'>{{point.name}}</v-btn>
+                                              <v-btn depressed v-for='point in rightoption.checkout' class="teal--text text--darken-2 my-1" :href='point.source'>{{point.name}}</v-btn>
 
                                             </v-layout>
 
                                             <v-layout d-flex class="my-2" v-if='rightoption.name=="traditionallong"'>
                                                 <v-flex xs12 md6 class="ma-2">
-                                                  <h2 class="subheading mx-1 font-weight-light">If you are on the west coast:</h2>
+                                                  <h2 class="subheading mx-1 font-weight-regular">If you are on the west coast:</h2>
                                                   <v-card-text class="pa-1 subheading">
-                                                    Lukas Ault <a href="mailto:Lukas.Ault@cbre.com" style="text-decoration: none;"><v-icon color="green darken-2">mail_outline</v-icon></a>
+                                                    Lukas Ault <a href="mailto:Lukas.Ault@cbre.com" style="text-decoration: none;"><v-icon color="teal darken-2">mail_outline</v-icon></a>
                                                   </v-card-text>
                                                 </v-flex>
                                                 <v-flex xs12 md6 class="ma-2">
-                                                    <h2 class="subheading mx-1  font-weight-light">If you are on the east coast:</h2>
+                                                    <h2 class="subheading mx-1  font-weight-regular">If you are on the east coast:</h2>
                                                     <v-card-text class="pa-1 subheading">
-                                                      Marshall O'Moore <a href="mailto:marshall.o'moore@cbre.com" style="text-decoration: none;"><v-icon color="green darken-2">mail_outline</v-icon></a>
+                                                      Marshall O'Moore <a href="mailto:marshall.o'moore@cbre.com" style="text-decoration: none;"><v-icon color="teal darken-2">mail_outline</v-icon></a>
                                                     </v-card-text>
                                                 </v-flex>
                                               </v-layout>
@@ -344,19 +344,19 @@
                   </v-layout>
                         <v-layout align-end justify-center text-xs-center class="my-2">
                             <v-flex>
-                                <v-btn fab dark v-bind="minisize3" color="green darken-2" @click="goback"> <v-icon dark>keyboard_arrow_left</v-icon></v-btn><span class="subheading white--text">Previous</spam>
+                                <v-btn fab dark v-bind="minisize3" color="teal darken-2" @click="goback"> <v-icon dark>keyboard_arrow_left</v-icon></v-btn><span class="subheading white--text">Previous</spam>
                             </v-flex>
                             <v-flex>
                                 <v-layout column>
                                 <v-btn
-                                color="green darken-2"
+                                color="teal darken-2"
                                 @click="window.location='http://topfloor.us?landingpage=marshall';"
                                 large
                                 >
                                 <div class="white--text">Get me some space!</div>
                                 </v-btn>
                                 <v-btn
-                                color="green darken-2"
+                                color="teal darken-2"
                                 @click="resetall"
                                 large
                                 >
@@ -365,7 +365,7 @@
                             </v-layout>
                             </v-flex>
                             <v-flex>
-                                    <span class="subheading white--text">Next Best</spam><v-btn fab dark v-bind="minisize3" color="green darken-2" @click="goforward"> <v-icon dark>keyboard_arrow_right</v-icon></v-btn>
+                                    <span class="subheading white--text">Next Best</spam><v-btn fab dark v-bind="minisize3" color="teal darken-2" @click="goforward"> <v-icon dark>keyboard_arrow_right</v-icon></v-btn>
                             </v-flex>
                         </v-layout>
             </v-container>
