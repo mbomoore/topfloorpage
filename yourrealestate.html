@@ -17,7 +17,7 @@
         /* ---- reset ---- */ 
         .body{ margin:0; font:normal 75% Arial, Helvetica, sans-serif; }
         .canvas{ display: block; vertical-align: bottom; } /* ---- particles.js container ---- */ 
-        #particles-js{ position:absolute; width: 100%; height: 160%; background-color: #27959C; background-image: url(""); background-repeat: no-repeat; background-size: cover; background-position: 50% 50%; }
+        #particles-js{ position:absolute; width: 100%; height: 170%; background-color: #27959C; background-image: url(""); background-repeat: no-repeat; background-size: cover; background-position: 50% 50%; }
     </style>
   </head>
 
@@ -48,7 +48,7 @@
             
                   <v-divider class="white"></v-divider>
             
-                  <v-stepper-step editable color="teal darken-2" step="2"><h2 class="headline font-weight-regular white--text">Results</h2></v-stepper-step>
+                  <v-stepper-step color="teal darken-2" step="2"><h2 class="headline font-weight-regular white--text">Results</h2></v-stepper-step>
                 </v-stepper-header>
             
                 <v-stepper-items style="min-height:60%">
@@ -99,20 +99,13 @@
                                 <v-card-text class="subheading font-weight-regular my-0">Your real estate issues are unique to your company and business model, and so should be your solution. You should work with one of our professionals.</v-card-text>
 
                                 <v-layout d-flex>
-                                    <v-flex xs12 md6 class="ma-2">
-                                      <h2 class="subheading mx-1 font-weight-regular">If you are on the west coast:</h2>
-                                      <v-card-text class="pa-1 subheading">
-                                        Lukas Ault <a href="mailto:Lukas.Ault@cbre.com" style="text-decoration: none;"><v-icon color="teal darken-2">mail_outline</v-icon></a>
-                                      </v-card-text>
-                                      
-                                    </v-flex>
-                                    <v-flex xs12 md6 class="ma-2">
-                                        <h2 class="subheading mx-1  font-weight-regular">If you are on the east coast:</h2>
-                                        <v-card-text class="pa-1 subheading">
-                                          Marshall O'Moore <a href="mailto:marshall.o'moore@cbre.com" style="text-decoration: none;"><v-icon color="teal darken-2">mail_outline</v-icon></a>
-                                        </v-card-text>
-                                      
-                                    </v-flex>
+                                    <v-btn
+                                color="teal darken-2"
+                                @click="window.location='https://www.topfloor.us/san-francisco-ca/office-space?landingpage=marshall'"
+                                large
+                                >
+                                <div class="white--text">Get me some space!</div>
+                                </v-btn>
                                   </v-layout>
                                   <v-layout justify-center>
                                 <v-btn
@@ -538,7 +531,7 @@
             },
           {name: "flexible",dialog:"fldialog", fullName: "Coworking", tiny: 0, small: 0, medium: 0, large: 0,
             text:"You're just starting out and your business doesn’t have its legs, but you have enough traction that it's time to graduate from the garage or coffee shop. You're not known in the market yet (but that will change) and you're looking for a co-founder or your first few core strategic hires. You’re scrappy and are always looking for a creative solution as opposed to an expensive one. You don't know where you'll be in 6 months, let alone five years. But you're excited, optimistic, and ready for the journey that lies ahead.",
-            picturesrc:"https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1",
+            picturesrc:"/photo-1522071820081-009f0129c71c-min.jpg",
             pros:[
                 {icon:"call_split",text:"Flexibility."},
                 {icon:"room_service",text:"Cool amenities."},
