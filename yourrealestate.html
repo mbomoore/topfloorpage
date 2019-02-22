@@ -32,9 +32,16 @@
       
       <v-container fluid v-bind:class="widther" v-bind:style="fullwidthfunc">
 
+        <v-layout d-flex v-bind="binding">
+            <v-flex>
             <h1 class="display-1 font-weight-regular white--text my-2">San Francisco Space Buddy</h1>
             <h1 class="headline font-weight-regular white--text my-2">We'll get you off to the races!</h1>
-
+          </v-flex>
+          <v-flex class="right">
+            <v-img :aspect-ratio="7/2" max-height="75" src="/TopFloor Logo_Transparent.png" contain></v-img>
+          </v-flex>
+        </v-layout>
+        
         <v-stepper v-model="stepper" class="elevation-0" style="background-color: rgba(0, 0, 0, 0)" non-linear>
                 <v-stepper-header style="background-color: rgba(0, 0, 0, 0)" class="elevation-0">
     
@@ -184,6 +191,11 @@
                             <v-carousel-item
                             v-for="(rightoptionz,i) in rightoptions"
                             :key="i">
+                            
+                            <v-layout justify-center>
+                                <span class="headline font-weight-regular pa-1 my-2 text-xs-center white--text">{{i+1==1 ? "Based on what you said, your best strategy is:" : "Your "+ ordinal_suffix_of(i + 1)+ " best strategy is:"}}</span>
+                            </v-layout>
+                              
                             <v-layout justify-center>
                             <v-card xs12 width=85%>
                                         
@@ -192,7 +204,7 @@
                                     aspect-ratio="3"
                                     ></v-img>
                                     <v-card-title>
-                                      <h3 class="headline mb-0 grey-darken-3">Your #{{i+1}}: {{rightoptionz.fullName}}</h3>
+                                      <h3 class="headline mb-0 grey-darken-3">{{rightoptionz.fullName}}</h3>
                                     </v-card-title>
                                     <v-divider></v-divider>
                                     <v-card-text class="subheading font-weight-regular my-0">{{rightoptionz.text}}</v-card-text>
@@ -759,6 +771,20 @@
                 }else{
                 this.renderoption++
                 }
+            },
+            ordinal_suffix_of(i) {
+                var j = i % 10,
+                    k = i % 100;
+                if (j == 1 && k != 11) {
+                    return i + "st";
+                }
+                if (j == 2 && k != 12) {
+                    return i + "nd";
+                }
+                if (j == 3 && k != 13) {
+                    return i + "rd";
+                }
+                return i + "th";
             },
           resetall(){
             this.sizeselection=0
