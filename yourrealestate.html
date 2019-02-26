@@ -17,7 +17,7 @@
         /* ---- reset ---- */ 
         .body{ margin:0; font:normal 75% Arial, Helvetica, sans-serif; }
         .canvas{ display: block; vertical-align: bottom; } /* ---- particles.js container ---- */ 
-        #particles-js{ position:absolute; width: 100%; height: 170%; background-color: #27959C; background-image: url(""); background-repeat: no-repeat; background-size: cover; background-position: 50% 50%; }
+        #particles-js{ position:absolute; width: 100%; height: 250%; background-color: #27959C; background-image: url(""); background-repeat: no-repeat; background-size: cover; background-position: 50% 50%; }
     </style>
   </head>
 
@@ -68,7 +68,7 @@
 
                                     <v-layout d-flex column>
 
-                                      <v-flex v-for='sizeoption in sizeoptions' xs12 md3>
+                                      <v-flex v-for='sizeoption in sizeoptionsrev' xs12 md3>
                                         <v-btn xs12 md3 :depressed='sizeoption==sizeselection' large :color="((sizeoption==sizeselection) ? 'teal darken-2' : '')" v-bind:class="((sizeoption==sizeselection) ? 'white--text my-2 text-none subheading' : 'teal--text text--darken-2 text-none subheading')" @click='sizeselection = sizeoption'>{{sizeoption}}</v-button>
                                       
                                       </v-flex>
@@ -185,8 +185,6 @@
 
                     <v-layout row justify-center align-center>
 
-                      <v-flex xs12 md10>
-
                         <v-carousel :cycle="false" light height="120%" class="elevation-0" hide-delimiters>
                             <v-carousel-item
                             v-for="(rightoptionz,i) in rightoptions"
@@ -227,6 +225,15 @@
                                             </span>
                                       </v-flex>
                                     </v-layout>
+                                    <v-layout justify-center>
+                                    <v-btn
+                                    color="teal darken-2"
+                                    @click="window.location='https://www.topfloor.us/san-francisco-ca/office-space?landingpage=marshall'"
+                                    large
+                                    >
+                                    <div class="white--text">Get me some space!</div>
+                                    </v-btn>
+                                    </v-layout>
 
                                      <br>
                                      <br>
@@ -248,13 +255,7 @@
 
                             <v-flex xs6 md6>
                                 <v-layout column>
-                                <v-btn
-                                color="teal darken-2"
-                                @click="window.location='https://www.topfloor.us/san-francisco-ca/office-space?landingpage=marshall'"
-                                large
-                                >
-                                <div class="white--text">Get me some space!</div>
-                                </v-btn>
+
                                 <v-btn
                                 color="teal darken-2"
                                 @click="resetall"
@@ -870,6 +871,9 @@
         },
 
         computed:{
+          sizeoptionsrev(){
+            return this.sizeoptions.reverse()
+          },
           sortedSentences: function(){
             return this.sentences.concat().filter(a=>a.placement!=0).sort((a,b)=>a.placement-b.placement)
           },
