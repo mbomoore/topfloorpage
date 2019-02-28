@@ -13,7 +13,9 @@
             transition: all .2s;
             opacity: 0;
         }
-
+        .san-francisco{
+          background: url('kisspng-san-francisco-skyline-royalty-free-skyline-5abe601d33a381.0027950515224258852115.png');
+        }
         /* ---- reset ---- */ 
         .body{ margin:0; font:normal 75% Arial, Helvetica, sans-serif; }
         .canvas{ display: block; vertical-align: bottom; } /* ---- particles.js container ---- */ 
@@ -35,33 +37,64 @@
         <v-layout d-flex v-bind="binding">
             <v-flex>
             <h1 class="display-1 font-weight-regular white--text my-2">San Francisco Space Buddy</h1>
-            <h1 class="headline font-weight-regular white--text my-2">We'll get you off to the races!</h1>
+            
           </v-flex>
           <v-flex class="right">
-            <v-img class="ma-2" :aspect-ratio="7/2" max-height="75" src="TopFloor Logo_Transparent.png" contain></v-img>
+            <v-img class="ma-2" :aspect-ratio="7/2" max-height="50" src="TopFloor Logo_Transparent.png" contain></v-img>
           </v-flex>
         </v-layout>
         
         <v-stepper v-model="stepper" class="elevation-0" style="background-color: rgba(0, 0, 0, 0)" non-linear>
                 <v-stepper-header style="background-color: rgba(0, 0, 0, 0)" class="elevation-0">
     
+                  <v-stepper-step editable color="teal darken-2" :complete="stepper > 0" step="0"><h2 class="headline font-weight-regular white--text">Welcome</h2></v-stepper-step>
+            
+                  <v-divider class="white"></v-divider>
 
-                  <v-stepper-step editable color="teal darken-2" :complete="stepper > 0" step="0"><h2 class="headline font-weight-regular white--text">Size</h2></v-stepper-step>
+                  <v-stepper-step editable color="teal darken-2" :complete="stepper > 1" step="1"><h2 class="headline font-weight-regular white--text">Size</h2></v-stepper-step>
             
                   <v-divider class="white"></v-divider>
             
-                  <v-stepper-step editable color="teal darken-2" :complete="stepper > 1" step="1"><h2 class="headline font-weight-regular white--text">What matters</h2></v-stepper-step>
+                  <v-stepper-step editable color="teal darken-2" :complete="stepper > 2" step="2"><h2 class="headline font-weight-regular white--text">What matters</h2></v-stepper-step>
         
             
                   <v-divider class="white"></v-divider>
             
-                  <v-stepper-step color="teal darken-2" step="2"><h2 class="headline font-weight-regular white--text">Results</h2></v-stepper-step>
+                  <v-stepper-step color="teal darken-2" step="3"><h2 class="headline font-weight-regular white--text">Results</h2></v-stepper-step>
                 </v-stepper-header>
             
                 <v-stepper-items style="min-height:60%">
 
-
                   <v-stepper-content step="0" v-bind:class="widther">
+                    <v-layout justify-center text-xs-center class="pa-3">
+                            <v-flex xs12>
+                                <h2 class="display-1 font-weight-regular pa-1 my-3 white--text">San Francisco Space Buddy</h2>
+                                
+                                <p class="headline font-weight-regular pa-1 my-3 white--text">We are going to find the office space that's right for you.</p>
+
+
+                                    <v-btn
+
+                                      color="teal darken-2"
+                                      @click="stepper=1"
+                                      large
+                                      >
+                                      <div class="white--text">Great, let's do it!</div>
+                                    </v-btn>
+
+                                    <v-img
+                            
+                                src='kisspng-san-francisco-skyline-royalty-free-skyline-5abe601d33a381.0027950515224258852115.png'
+                                aspect-ratio="2"
+                                ></v-img>
+
+                            </v-flex>
+                    </v-layout>
+                    <v-layout align-end justify-center>
+                    </v-layout>
+
+
+                  <v-stepper-content step="1" v-bind:class="widther">
                         <v-layout justify-center text-xs-center class="pa-3">
                                 <v-flex xs12>
                                     <h2 class="headline font-weight-regular pa-1 my-3 white--text">First, how big are you today?</h2>
@@ -129,7 +162,7 @@
 
                   </v-stepper-content>
             
-                  <v-stepper-content step="1" v-bind:class="widther">
+                  <v-stepper-content step="2" v-bind:class="widther">
                     
                         <h2 class="headline font-weight-regular pa-1 my-2 text-xs-center white--text">Now, tell me a little about yourself.</h2>
                         <v-layout justify-center fill-height text-xs-center v-bind="binding" v-bind:style="minisize" ref="qbox">
@@ -179,7 +212,7 @@
                   </v-stepper-content>
             
 
-                  <v-stepper-content step="2" v-bind:class="widther">
+                  <v-stepper-content step="3" v-bind:class="widther">
                     <v-container fluid v-bind:class="widther">
 
 
@@ -740,7 +773,7 @@
 
             postandmoveon(){
               this.postWithLocData()
-              this.stepper=2
+              this.stepper=3
             },
 
             postDatatoZap(){
@@ -805,7 +838,7 @@
           biggerboat(){
             if (this.sizeselection=="More than 100 people."){
               this.hydialog=true
-            } else {this.stepper=1}
+            } else {this.stepper=2}
           },
           biggerboatclose(){
             this.hydialog=false
