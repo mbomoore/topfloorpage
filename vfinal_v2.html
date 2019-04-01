@@ -1,0 +1,1027 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons' rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+    <style>
+    
+        .sentence-move {
+            transition: transform 1s;
+        }
+        .sentence-enter, .sentence-leave{
+            transition: all .2s;
+            opacity: 0;
+        }
+    </style>
+  </head>
+
+<body>
+  
+  <!-- Vue works with this div -->
+  <div>
+    <v-app id="app" style="background:white">
+      
+      <v-container fluid v-bind:class="widther" v-bind:style="fullwidthfunc">
+
+
+        <v-stepper v-model="stepper">
+                <v-stepper-header>
+                <v-stepper-step color="green darken-2" :complete="stepper > 0" step="0"><h2 class="headline font-weight-light">Intro</h2></v-stepper-step>
+    
+                <v-divider></v-divider>
+
+                  <v-stepper-step color="green darken-2" :complete="stepper > 1" step="1"><h2 class="headline font-weight-light">Size</h2></v-stepper-step>
+            
+                  <v-divider></v-divider>
+            
+                  <v-stepper-step color="green darken-2" :complete="stepper > 2" step="2"><h2 class="headline font-weight-light">Info</h2></v-stepper-step>
+            
+                  <v-divider></v-divider>
+ 
+                  <v-stepper-step color="green darken-2" :complete="stepper > 3" step="3"><h2 class="headline font-weight-light">What matters</h2></v-stepper-step>
+            
+                  <v-divider></v-divider>
+            
+                  <v-stepper-step color="green darken-2" step="4"><h2 class="headline font-weight-light">The real estate you need</h2></v-stepper-step>
+                </v-stepper-header>
+            
+                <v-stepper-items style="min-height:60%">
+                <v-stepper-content step="0" v-bind:class="widther">
+                    <v-layout d-flex v-bind='binding'>
+                            <v-flex xs12 md6>
+                            <h1 class="display-1 font-weight-light">Startup Real Estate</h1>
+                             <h1 class="headline font-weight-light">How to scale up and when you've scaled out</h1>
+                                <v-divider class="my-2"></v-divider>
+                                <!--change-->
+                                <div class="subheading font-weight-light">When you’re the CEO of a rising startup, real estate often takes a backseat to driving the business forward. But should it? Tech giants have started in a garage or a dorm room—unconventional spaces that have become part of the DIY mythos of Silicon Valley. But in reality, your space should be a platform for you to test, explore and scale, because your environment says a lot about you, and influences your thinking, your culture and your brand.
+                                </br></br>Whether you’re a firm of two, 25 or 100, here’s the rough guide to real estate that rolls with the punches.
+                                        </div>
+                                <v-divider class="my-2"></v-divider>
+                            </v-flex>
+                            <v-flex xs12 md6>
+                                <v-img src="https://images.unsplash.com/photo-1468802424679-73df7d3d467e" class="elevation-0 ma-3" max-height=350 contain></v-img>
+                            </v-flex>
+                    </v-layout>
+                    <v-layout justify-center>
+                            <v-btn
+                              color="green"
+                              @click="stepper=1"
+                              large
+                              >
+                              <div class="white--text">Let's do it!</div>
+                          </v-btn>
+                        </v-layout>
+
+                </v-stepper-content>
+
+
+                  <v-stepper-content step="1" v-bind:class="widther">
+                        <v-layout justify-center text-xs-center class="pa-3">
+                                <v-flex xs12>
+                                    <h2 class="headline font-weight-light pa-1 my-3">First, how big are you today?</h2>
+
+                                    <v-layout d-flex v-bind='binding'>
+
+                                      <v-flex v-for='sizeoption in sizeoptions' xs12 md3>
+                                        <v-btn xs12 md3 :depressed='sizeoption==sizeselection' large :color="((sizeoption==sizeselection) ? 'green darken-2' : '')" v-bind:class="((sizeoption==sizeselection) ? 'white--text my-2 text-none subheading' : 'green--text text--darken-2 text-none subheading')" @click='sizeselection = sizeoption'>{{sizeoption}}</v-button>
+                                      
+                                      </v-flex>
+
+                                    </v-layout>
+
+                                    <v-form ref="startform" v-model="valid" class='my-3'>
+
+                                        <v-btn
+                                          :disabled="!valid"
+                                          color="green darken-2"
+                                          @click="biggerboat"
+                                          large
+                                          >
+                                          <div class="white--text">Continue</div>
+                                        </v-btn>
+
+                                    </v-form>
+                                </v-flex>
+                        </v-layout>
+                        <v-layout align-end justify-center>
+                        </v-layout>
+                        
+                        <v-dialog v-model="hydialog" max-width="700">
+                            <v-card>
+                                <v-img
+                            
+                                src='https://images.unsplash.com/photo-1506125840744-167167210587?ixlib=rb-1.2.1'
+                                aspect-ratio="3"
+                                ></v-img>
+                                <v-card-title>
+                                  <h3 class="headline mb-0">We're gonna need a bigger boat.</h3>
+                                </v-card-title>
+                                <v-divider></v-divider>
+                                <v-card-text class="subheading font-weight-light my-0">Your real estate issues are unique to your company and business model, and so should be your solution. You should work with one of our professionals.</v-card-text>
+
+                                <v-layout d-flex>
+                                    <v-flex xs12 md6 class="ma-2">
+                                      <h2 class="subheading mx-1 font-weight-light">If you are on the west coast:</h2>
+                                      <v-card-text class="pa-1 subheading">
+                                        Lukas Ault <a href="mailto:Lukas.Ault@cbre.com" style="text-decoration: none;"><v-icon color="green darken-2">mail_outline</v-icon></a>
+                                      </v-card-text>
+                                      
+                                    </v-flex>
+                                    <v-flex xs12 md6 class="ma-2">
+                                        <h2 class="subheading mx-1  font-weight-light">If you are on the east coast:</h2>
+                                        <v-card-text class="pa-1 subheading">
+                                          Marshall O'Moore <a href="mailto:marshall.o'moore@cbre.com" style="text-decoration: none;"><v-icon color="green darken-2">mail_outline</v-icon></a>
+                                        </v-card-text>
+                                      
+                                    </v-flex>
+                                  </v-layout>
+                                  <v-layout justify-center>
+                                <v-btn
+                                  color="green"
+                                  @click="biggerboatclose"
+                                  large
+                                  >
+                                  <div class="white--text">Close</div>
+                              </v-btn>
+                            </v-layout>
+                          </v-card>
+
+                        </v-dialog>
+
+                  </v-stepper-content>
+            
+                  <v-stepper-content step="2" v-bind:class="widther">
+                    
+                        <h2 class="headline font-weight-light pa-1 my-2 text-xs-center ">Now, tell me a little about yourself.</h2>
+                        <v-layout justify-center fill-height text-xs-center v-bind="binding" v-bind:style="minisize" ref="qbox">
+                          
+                          <v-flex xs12 md6 v-bind:class="widtherright" style="max-height:95%;">
+                                <h2 class="subheading font-weight-light">In order of importance, please pick five statements:</h2>
+                                <div v-bind:style="minisize2">
+                            <transition-group name = "sentence">
+                            <v-card light v-for="sentence in sentences" v-if="sentence.unselected" :key="sentence.id" color="green darken-2">
+                              <v-card-text light v-on:click="flipstatusun(sentence.id)" class="sentence white--text my-2 pa-1 body-2">{{sentence.text}}</v-card-text>
+                            </v-card>
+                            </transition-group>
+                            </div>
+                          </v-flex>
+                          
+                        
+                
+                          <v-flex xs12 md6 v-bind:class="widtherleft">
+                            <h2 class="subheading font-weight-light">You've said:</h2>
+                              <transition-group name = "sentence">
+                                  <v-layout justify-center text-xs-center align-center class="ma-0 pa-0" v-for="sentence in sortedSentences" v-if="!sentence.unselected" :key="sentence.id" class="sentence" v-on:click="flipstatussel(sentence.id)">
+                                    <v-flex
+                                    xs2>
+                                    <v-card><v-card-text class="pa-1 body-2 elevation-2">{{sentence.placement}}</v-card-text></v-card>
+                                    </v-flex>
+                                    <v-flex
+                                    xs10>
+                                    <v-card light color="green darken-2">
+                                        <v-card-text light class="white--text my-1 pa-1 body-1 elevation-2">{{sentence.text}}</v-card-text>
+                                    </v-card>
+                                    </v-flex>
+                                  </v-layout>
+                            </transition-group>
+                          </v-flex>
+                
+                        </v-layout>
+
+                        <v-layout align-end justify-center>
+                                <v-btn
+                                color="green darken-2"
+                                @click="postandmoveon"
+                                large
+                                >
+                                <div class="white--text">Continue</div>
+                                </v-btn>
+                        </v-layout>
+                  </v-stepper-content>
+            
+                  <v-stepper-content step="3" v-bind:class="widther">
+                      <v-container fluid grid-list-md v-bind:class="widther">
+                    <v-layout v-bind="binding" d-flex justify-center v-if="sizetodisplay">
+                        <v-flex xs12 md6>
+                            <div class="subheading font-weight-light pa-1"> {{sizetodisplay.firstparagraph}}</div>
+                        </v-flex>
+                        <v-flex xs12 md6>
+                            <v-img
+                            :src='sizetodisplay.image'
+                            max-height="250"
+                            class="pa-3">
+                        </v-flex>
+                    </v-layout>
+                    <v-layout v-bind="binding" d-flex justify-center v-if="sizetodisplay">
+                            <v-flex xs12 md4 class="ma-0">
+                                <v-card color="white">
+                                    <div class="subheading green darken-2 white--text font-weight-light ma-0 pa-1">Your real estate should be</div>
+                                    <v-divider color="white"></v-divider>
+                                    <v-card-text v-for="point in sizetodisplay.blockone" class="pa-1">
+                                        <span class="group green--text text--darken-2 font-weight-light body-2">
+                                        <v-icon light color="green darken-2">{{point.icon}}</v-icon>
+                                        {{point.text}}
+                                        </span>
+                                    </v-card-text>
+                                </v-card>
+                            </v-flex>
+                            <v-flex xs12 md4 class="ma-0">
+                                    <v-card color="white">
+                                        
+                                        <div class="subheading green darken-2 white--text font-weight-light ma-0 pa-1">It's time to move when</div>
+                                        <v-divider color="white"></v-divider>
+                                        <v-card-text v-for="point in sizetodisplay.blocktwo" class="pa-1">
+                                            <span class="group green--text text--darken-2 font-weight-light body-2">
+                                            <v-icon light color="green darken-2">{{point.icon}}</v-icon>
+                                            {{point.text}}
+                                            </span>
+                                        </v-card-text>
+                                    </v-card>
+                                </v-flex>
+                                <v-flex xs12 md4 class="ma-0">
+                                        <v-card color="white">
+                                                <div class="subheading green darken-2 white--text font-weight-light ma-0 pa-1">Start thinking about</div>
+                                                <v-divider color="white"></v-divider>
+                                            <v-card-text v-for="point in sizetodisplay.blockthree" class="pa-1">
+                                                <span class="group green--text text--darken-2 font-weight-light body-2">
+                                                <v-icon light color="green darken-2">{{point.icon}}</v-icon>
+                                                {{point.text}}
+                                                </span>
+                                            </v-card-text>
+                                        </v-card>
+                                    </v-flex>
+                        </v-layout>
+
+                    
+            
+                    <v-layout align-end justify-center>
+                            <v-btn
+                            color="green darken-2"
+                            @click="stepper = 4"
+                            large
+                            >
+                            <div class="white--text">Show me my solution</div>
+                            </v-btn>
+                    </v-layout>
+                    </v-container>
+                  </v-stepper-content>
+
+                  <v-stepper-content step="4" v-bind:class="widther">
+                    <v-container fluid v-bind:class="widther">
+                    <v-layout row justify-center align-center>
+
+                      <v-flex xs12 md9>
+
+                                    <v-card>
+                                        
+                                            <v-img
+                                            :src='rightoption.picturesrc'
+                                            aspect-ratio="3"
+                                            ></v-img>
+                                            <v-card-title>
+                                              <h3 class="headline mb-0 grey-darken-3">Your #{{renderoption+1}}: {{rightoption.fullName}}</h3>
+                                            </v-card-title>
+                                            <v-divider></v-divider>
+                                            <v-card-text class="subheading font-weight-light my-0">{{rightoption.text}}</v-card-text>
+                  
+                                            <v-layout d-flex v-bind="binding">
+                                              <v-flex xs12 md6 class="ma-2">
+                                                <h2 class="subheading mx-1">Pros</h2>
+                                                <v-card-text v-for="point in rightoption.pros" class="pa-1">
+                                                    <span class="group green--text text--darken-2 font-weight-light body-2">
+                                                    <v-icon light color="green darken-2">{{point.icon}}</v-icon>
+                                                    {{point.text}}
+                                                  </span>
+                                              </v-flex>
+                                              <v-flex xs12 md6 class="ma-2">
+                                                  <h2 class="subheading mx-1">Cons</h2>
+                                                  <v-card-text v-for="point in rightoption.cons" class="pa-1">
+                                                      <span class="group green--text text--darken-2 font-weight-light body-2">
+                                                      <v-icon light color="green darken-2">{{point.icon}}</v-icon>
+                                                      {{point.text}}
+                                                    </span>
+                                              </v-flex>
+                                            </v-layout>
+                                            <v-divider  v-if='rightoption.checkout' class="my-2"></v-divider>
+                                            <v-layout justify-center v-if='rightoption.checkout'><h2 class="subheading font-weight-light">Explore more:</h2></v-layout>
+                                            <v-layout v-bind="binding" class="my-2" justify-center v-if='rightoption.checkout'>
+                                              
+                                              <v-btn depressed v-for='point in rightoption.checkout' class="green--text text--darken-2 my-1" :href='point.source'>{{point.name}}</v-btn>
+
+                                            </v-layout>
+
+                                            <v-layout d-flex class="my-2" v-if='rightoption.name=="traditionallong"'>
+                                                <v-flex xs12 md6 class="ma-2">
+                                                  <h2 class="subheading mx-1 font-weight-light">If you are on the west coast:</h2>
+                                                  <v-card-text class="pa-1 subheading">
+                                                    Lukas Ault <a href="mailto:Lukas.Ault@cbre.com" style="text-decoration: none;"><v-icon color="green darken-2">mail_outline</v-icon></a>
+                                                  </v-card-text>
+                                                </v-flex>
+                                                <v-flex xs12 md6 class="ma-2">
+                                                    <h2 class="subheading mx-1  font-weight-light">If you are on the east coast:</h2>
+                                                    <v-card-text class="pa-1 subheading">
+                                                      Marshall O'Moore <a href="mailto:marshall.o'moore@cbre.com" style="text-decoration: none;"><v-icon color="green darken-2">mail_outline</v-icon></a>
+                                                    </v-card-text>
+                                                </v-flex>
+                                              </v-layout>
+                  
+                                          </v-card>
+
+                        
+                      </v-flex>
+
+
+                  </v-layout>
+                        <v-layout align-end justify-center text-xs-center class="my-2">
+                            <v-flex>
+                                <v-btn fab dark v-bind="minisize3" color="green darken-2" @click="goback"> <v-icon dark>keyboard_arrow_left</v-icon></v-btn><span class="subheading">Back</spam>
+                            </v-flex>
+                            <v-flex>
+                                <v-btn
+                                color="green darken-2"
+                                @click="resetall"
+                                large
+                                >
+                                <div class="white--text">Restart!</div>
+                                </v-btn>
+                            </v-flex>
+                            <v-flex>
+                                    <span class="subheading">Next</spam><v-btn fab dark v-bind="minisize3" color="green darken-2" @click="goforward"> <v-icon dark>keyboard_arrow_right</v-icon></v-btn>
+                            </v-flex>
+                        </v-layout>
+            </v-container>
+
+                  </v-stepper-content>
+                </v-stepper-items>
+              </v-stepper>
+      </v-container>
+    </v-app>
+  </div>
+  
+  <script src="https://cdn.polyfill.io/v3/polyfill.min.js"></script>
+
+  <!-- Load Vue script -->
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.21/vue.min.js"></script>-->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.21/vue.js""></script>
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vuetify/1.3.15/vuetify.min.js"></script>
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  
+  <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-firestore.js"></script>
+  
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyBq6kdS2tPtT0WsPSs3AH1Q-BOjITdnzdQ",
+      authDomain: "quiz-store-3a9f3.firebaseapp.com",
+      databaseURL: "https://quiz-store-3a9f3.firebaseio.com",
+      projectId: "quiz-store-3a9f3",
+      storageBucket: "quiz-store-3a9f3.appspot.com",
+      messagingSenderId: "992698065608"
+    };
+    firebase.initializeApp(config);
+    var db = firebase.firestore();
+    db.settings({
+        timestampsInSnapshots: true
+    });
+
+  </script>
+
+
+
+  <!-- On load, init Vue -->
+  <script>
+
+/*     axios({
+      method: 'post',
+      url: 'https://hooks.zapier.com/hooks/catch/4110969/03xn6f/',
+      params: {name:"hello", name2:"hello"},
+      headers: {'Content-Type': 'application/json'}
+    }) */
+
+    window.onload=function(){
+
+      var unlist=[
+          {name: "sublease", tiny: 0, small: 0, medium: 0, large: 0},
+          {name: "traditionalshort", tiny: 0, small: 0, medium: 0, large: 0},
+          {name: "traditionallong", tiny: 0, small: 0, medium: 0, large: 0},
+          {name: "flexible", tiny: 0, small: 0, medium: 0, large: 0},
+          {name: "hybrid", tiny: 0, small: 0, medium: 0, large: 0},
+        ]
+
+      var data={
+        title: "Hello",
+        valid: true,
+        numberselected:0,
+        sentences: [
+          {
+            id: 0,
+            placement:0,
+            text:"Cheap, cheap or even cheaper.",
+            unselected:true,
+            sublease: 5,
+            traditionalshort: 2,
+            traditionallong: 3,
+            flexible: 1,
+            hybrid: 4
+          },
+          {
+            id: 1,
+            placement:0,
+            text:"I don't have cash on hand to set it up.",
+            unselected: true,
+            sublease: 4,
+            traditionalshort: 1,
+            traditionallong: 2,
+            flexible: 5,
+            hybrid: 3
+          }
+          ,
+          {
+            id: 2,
+            placement:0,
+            text:"Perks please, we need to recruit the best!",
+            unselected: true,
+            sublease: 1,
+            traditionalshort: 2,
+            traditionallong: 4,
+            flexible: 4,
+            hybrid: 5
+          }
+          ,
+          {
+            id: 3,
+            placement:0,
+            text:"We need to be where the action is.",
+            unselected: true,
+            sublease: 2,
+            traditionalshort: 1,
+            traditionallong: 3,
+            flexible: 5,
+            hybrid: 4
+          }
+          ,
+          {
+            id: 4,
+            placement:0,
+            text:"I needed it yesterday!",
+            unselected: true,
+            sublease: 3,
+            traditionalshort: 2,
+            traditionallong: 1,
+            flexible: 5,
+            hybrid: 4
+          }
+          ,
+          {
+            id: 5,
+            placement:0,
+            text:"I'm not signing a personal guaranty.",
+            unselected: true,
+            sublease: 4,
+            traditionalshort: 1,
+            traditionallong: 0,
+            flexible: 5,
+            hybrid: 2
+          }
+          ,
+          {
+            id: 6,
+            placement:0,
+            text:"I need my own space.",
+            unselected: true,
+            sublease: 3,
+            traditionalshort: 4,
+            traditionallong: 5,
+            flexible: 1,
+            hybrid: 2
+          }
+          ,
+          {
+            id: 7,
+            placement:0,
+            text:"I need the dog at work to help code.",
+            unselected: true,
+            sublease: 2,
+            traditionalshort: 4,
+            traditionallong: 5,
+            flexible: 1,
+            hybrid: 2
+          }
+          ,
+          {
+            id: 8,
+            placement:0,
+            text:"I need it to grow. I hate moving.",
+            unselected: true,
+            sublease: 1,
+            traditionalshort: 2,
+            traditionallong: 3,
+            flexible: 4,
+            hybrid: 5
+          }
+          ,
+          {
+            id: 9,
+            placement:0,
+            text:"I have serious commitment issues.",
+            unselected: true,
+            sublease: 4,
+            traditionalshort: 3,
+            traditionallong: 1,
+            flexible: 5,
+            hybrid: 3
+          },
+          {
+            id: 10,
+            placement:0,
+            text:"Anybody but this landlord.",
+            unselected: true,
+            sublease: 4,
+            traditionalshort: 2,
+            traditionallong: 1,
+            flexible: 5,
+            hybrid: 3
+          }
+        ],
+        options: [
+          {name: "sublease", dialog:"subdialog", fullName: "Sublease", tiny: 0, small: 0, medium: 0, large: 0,
+          text: "Based on your criteria, you are in the 90% of founders who wants it all! You're starting to pick up steam and a shared space isn't cutting it. The sales team needs some private space to do their jobs and the lines at the bathroom are outrageous. However, you're not trying to spend an arm and a leg on building out a space you're going to (hopefully) blow out of in the next 18 months. You need functional space where your customers can come see all the blood, sweat, and tears your employees are putting into your company. You also need a space that will help you with recruiting, but you acknowledge that this is a temporary home until you hit your ARR numbers and need to recruit the next wave of talent to drive your business forward.",
+          picturesrc:"https://images.unsplash.com/photo-1498409785966-ab341407de6e?ixlib=rb-1.2.1",
+            pros:[
+                {icon:"av_timer",text:"Short term."},
+                {icon:"money_off",text:"Low capex."},
+                {icon:"fast_forward",text:"Speed to market."}
+            ],
+            cons:[
+                {icon:"fingerprint",text:"No unique identity."},
+                {icon:"youtube_searched_for",text:"Limited availability."}
+            ],
+            checkout:[
+            {name:"Use: CALC",source:"https://calc.cbre.com/"},
+            {name:"Use: Spacer",source:"https://workplace.cbre.com/home-spacer-by-cbre"}
+            ]
+          },
+          {name: "traditionalshort",dialog:"tsdialog", fullName: "Lease - Short", tiny: 0, small: 0, medium: 0, large: 0,
+          text: "You've gotten to an inflection point in your business where you're starting to see that your company needs an identity. Personal brand and culture have become common themes in management meetings as your business is hitting its stride and the team deliberates on the next iteration of what the company is and stands for. You have your core team locked in and your early hires are starting to move into management roles. You need a space that says 'we're legit and you might get to be part of something special' to any potential recruit who walks in the door. However, you're also seeing longer sales cycles and fewer new logos. You know you have a place in the market, but you're not sure how big your piece of pie will end up being. You're being cautiously optimistic before you dive in headfirst.",
+          picturesrc:"https://images.unsplash.com/photo-1511549945984-b2b193cb87e6?ixlib=rb-1.2.1",
+            pros:[
+                {icon:"av_timer",text:"Short term."},
+                {icon:"lock",text:"Secure"},
+                {icon:"fingerprint",text:"Make a unique identity."}
+            ],
+            cons:[
+                {icon:"monetization_on",text:"Expensive."},
+                {icon:"call_split",text:"Not flexible."},
+            ],
+            checkout:[
+            {name:"Use: CALC",source:"https://calc.cbre.com/"},
+            {name:"Use: Spacer",source:"https://workplace.cbre.com/home-spacer-by-cbre"}
+            ]
+          },
+          {name: "traditionallong", dialog:"tldialog", fullName: "Lease - Long", tiny: 0, small: 0, medium: 0, large: 0,
+          text: "Your business is flourishing and doesn’t seem to be slowing down anytime soon. It's clear that you're becoming a player in your market and it's time to compete on the talent front like you never have before. Your management team is maturing and starting to carry out strategic initiatives as opposed to focusing on your MVP. It's time to put a flag in the ground somewhere you can build your home base. It's time for landlords to compete over you as your credibility continues to grow.",
+          picturesrc:"https://images.unsplash.com/photo-1539872209618-fb1770aa6ff8?ixlib=rb-1.2.1",
+            pros:[
+                {icon:"fingerprint",text:"Make a unique identity."},
+                {icon:"lock",text:"Secure."},
+                {icon:"money_off",text:"Lowest run rate."},
+            ],
+            cons:[
+                {icon:"call_split",text:"Very not flexible!"},
+                {icon:"monetization_on",text:"High capex."},
+                {icon:"call_split",text:"Did we mention it's not flexible?"},
+            ]
+            },
+          {name: "flexible",dialog:"fldialog", fullName: "Coworking", tiny: 0, small: 0, medium: 0, large: 0,
+            text:"You're just starting out and your business doesn’t have its legs, but you have enough traction that it's time to graduate from the garage or coffee shop. You're not known in the market yet (but that will change) and you're looking for a co-founder or your first few core strategic hires. You’re scrappy and are always looking for a creative solution as opposed to an expensive one. You don't know where you'll be in 6 months, let alone five years. But you're excited, optimistic, and ready for the journey that lies ahead.",
+            picturesrc:"https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1",
+            pros:[
+                {icon:"call_split",text:"Flexibility."},
+                {icon:"room_service",text:"Cool amenities."},
+                {icon:"bubble_chart",text:"Networking and community."}
+            ],
+            cons:[
+                {icon:"visibility",text:"No privacy."},
+                {icon:"lock_open",text:"Low security."},
+                {icon:"fingerprint",text:"No unique identity."},
+            ],
+            checkout:[
+              {name:"Use: CALC",source:"https://calc.cbre.com/"},
+              {name:"Learn: Agile Advantage",source:"https://www.cbre.com/configuration/global%20shared/content/articles/agile-real-estate/the-agile-advantage"}
+            ]
+          },
+          {name: "hybrid", dialog:"hydialog", fullName: "Hybrid", tiny: 0, small: 0, medium: 0, large: 0,
+            text:"You're growing fast, but the future is never certain. You don’t want to slow down, but you also don’t want to run the risk of over commitment. Time to hedge your bets. If the market turns, you can offload a significant portion of costs almost immediately, without having to scramble to find a new space to operate in. You don't need everyone to be under one roof, as your teams are already functioning independently.",
+            picturesrc:"https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-1.2.1",
+            pros:[
+                {icon:"fingerprint",text:"Make a unique identity."},
+                {icon:"money_off",text:"Lowest total costs."},
+                {icon:"call_split",text:"Flexibility."},
+                {icon:"room_service",text:"Cool amenities."}
+            ],
+            cons:[
+                {icon:"youtube_searched_for",text:"Limited availability."},
+                {icon:"blur_on",text:"Complex set up."}
+            ],
+            checkout:[
+              {name:"Learn: Planning for Change",source:"https://www.cbre.com/configuration/global%20shared/content/articles/agile-real-estate/how-i-learned-to-stop-worrying-and-love-uncertainty"}
+            ]
+            },
+        ],
+        sizes: [
+          {
+            name: "1 to 5",
+            moniker: "tiny",
+            sublease: 4,
+            traditionalshort: 3,
+            traditionallong: 1,
+            flexible: 5,
+            hybrid: 0,
+            introheading: "It's just me and my cofounders.",
+            firstparagraph: "You have bigger fish to fry than thinking about real estate. However, no matter how scrappy you and your co-founders are, you’ll inevitably find that your home office or local coffee shops are not great places to conduct investors, partner or client meetings, or even work collaboratively, especially on design projects or confidential discussions. But hold out. Capital investments should be put towards growth rather than buying furniture or building out an office.",
+            blockone:[
+                {icon:"money_off",text:"Not burning through your wallet."}
+            ],
+            blocktwo:[
+                {icon:"group_add",text:"You hire people for heads-down work."},
+                {icon:"group_work",text:"You're having more private meetings."},
+                {icon:"monetization_on",text:"You get funding."}
+            ],
+            blockthree:[
+                {icon:"sentiment_satisfied_alt",text:"What will make you productive?"},
+                {icon:"schedule",text:"What does your day look like?"},
+                {icon:"bubble_chart",text:"What type of community do you need?"},
+            ],
+            image: "https://images.unsplash.com/photo-1502758930693-b8fb0f909327?ixlib=rb-1.2.1"
+          },
+          {
+            name: "5 to 25",
+            moniker: "small",
+            sublease: 4,
+            traditionalshort: 3,
+            traditionallong: 1,
+            flexible: 5,
+            hybrid: 0,
+            introheading: "A team of around 5 to 25 people.",
+            firstparagraph: "Things are going well, and you are thinking about hiring more full-time employees to support all aspects of the business. It’s time to have a home base where you can collaborate, and regularly meet your employees and perhaps clients. More importantly, it’s an energetic, vibrant place where you can nourish the company’s culture and branding.",
+            blockone:[
+                {icon:"my_location",text:"Easy for clients and emloyees to get to."},
+                {icon:"call_split",text:"Flexible enough to change with you."},
+                {icon:"device_hub",text:"Helping to build connections, within your company and without."}
+            ],
+            blocktwo:[
+                {icon:"person_add",text:"You need to create a unique brand to attract talent."},
+                {icon:"visibility_off",text:"You can't seem to find people when you need them."},
+                {icon:"attach_money",text:"You've reached break even on operating expenses."}
+            ],
+            blockthree:[
+                {icon:"show_chart",text:"How does your employee base scale with your product?"},
+                {icon:"crop_original",text:"What is the image you need to project?"}
+            ],
+            image: "https://images.unsplash.com/photo-1527192491265-7e15c55b1ed2?ixlib=rb-1.2.1"
+          },
+          {
+            name: "25 to 100",
+            moniker: "medium",
+            sublease: 5,
+            traditionalshort: 3,
+            traditionallong: 1,
+            flexible: 2,
+            hybrid: 4,
+            introheading: "Multiple teams, 25 to 100 people.",
+            firstparagraph: "You’re no longer a small team and your space now reflects that growth. It’s amazing to see your company expand and flourish from a spark of an idea to a fully functioning venture. Though you’ve crossed several workspace thresholds, progression and continued success should actively remain goals to keep top of mind. Again, securing and retaining talent with ideal locations and appealing amenities that enhance the employee experience is still a major focus. Visibility and recognition in the marketplace are crucial to your company’s reputation and prospects. Therefore, solid branding incorporated into workspace design is a must. Flexible, well-designed spaces that suit your company’s needs and support its culture come to the forefront.",
+            blockone:[
+            {icon:"call_split",text:"Flexible enough to change with you."},
+            {icon:"category",text:"Support a range of unique workstyles."},
+            {icon:"room_service", text:"Has the amenities to attract top talent."}
+            ],
+            blocktwo:[
+                {icon:"grid_on",text:"You have separate, independent business units."},
+                {icon:"pin_drop",text:"Customers want you to be closer."},
+                {icon:"public",text:"You need to go to new labor markets."}
+            ],
+            blockthree:[
+                {icon:"record_voice_over",text:"How do you keep different parts of the company communicating?"},
+                {icon:"settings",text:"What makes your people the most productive?"},
+                {icon:"supervised_user_circle",text:"Who is the right real estate partner for you?"},
+            ],
+            image: "https://images.unsplash.com/photo-1531973576160-7125cd663d86?ixlib=rb-1.2.1"
+          },
+          {
+            name: "100+",
+            moniker: "large",
+            sublease: 2,
+            traditionalshort: 3,
+            traditionallong: 4,
+            flexible: 1,
+            hybrid: 5,
+            introheading: "More than 100 people.",
+            firstparagraph: "Things are getting very serious.",
+            blockone:[
+                {icon:"money_off",text:"Not to burn through your wallet."}
+            ],
+            blocktwo:[
+                {icon:"group_add",text:"You hire people for heads-down work."},
+                {icon:"group_work",text:"You're having more private meetings."},
+                {icon:"monetization_on",text:"You get funding."}
+            ],
+            blockthree:[
+                {icon:"sentiment_satisfied_alt",text:"What will make you productive?"},
+                {icon:"schedule",text:"What does your day look like?"},
+                {icon:"bubble_chart",text:"What type of community do you need?"},
+            ],
+            image: "https://dg.imgix.net/every-small-group-needs-a-vision-mtyvfuux-en/landscape/every-small-group-needs-a-vision-mtyvfuux.jpg"
+          }
+        ],
+        values: [.25,.15,.15,.05,.05],
+        monikers:["tiny","small","medium","large"],
+        subdialog:false,
+        tsdialog:false,
+        tldialog:false,
+        fldialog:false,
+        hydialog:false,
+        sizeoptions:["It's just me and my cofounders.","A team of around 5 to 25 people.","Multiple teams, 25 to 100 people.","More than 100 people."],
+        sizeselection: 0,
+        stepper:0,
+        renderoption:0
+        }
+
+      new Vue({
+        el: '#app', // Vue works with this div (see line 4)
+        data: data, // title is set to 'Hello.'
+        methods:{
+            
+            breakpointstatus(){
+              /* this.$vuetify.breakpoint.width = window.innerWidth; */
+              console.log(this.$vuetify.breakpoint)
+            },
+
+            logdata(locdata){
+              locdata
+              for (sentence in this.sortedSentences){
+                locdata["sentence"+sentence]=this.sortedSentences[sentence].text
+              }
+              locdata["sizesel"]=this.sizeselection
+              locdata["time"]= new Date();
+              return(locdata)
+            },
+
+            postWithLocData(){
+
+                axios({
+                    method: 'get',
+                    /*change*/
+                    url: 'https://ipinfo.io/json',
+                    headers: {'Content-Type': 'application/json'}
+                })
+                .then((res)=>{
+
+                return db.collection("quizwithloc").add(this.logdata(res.data))
+                })
+                .then(function(docRef){
+                    console.log(docRef.id)
+                })
+                .catch(function(error){
+                    console.log("Oh My", error)
+                })
+            },
+
+            postandmoveon(){
+              this.postWithLocData()
+              this.stepper=3
+            },
+
+            postDatatoZap(){
+
+              axios({
+                  method: 'post',
+                  url: 'https://hooks.zapier.com/hooks/catch/4110969/03xn6f/',
+                  params: {name:"hello", name2:"hello"},
+                  headers: {'Content-Type': 'application/json'}
+                }).then((res)=>{console.log(res)}).catch((err)=>console.log(err))
+            },
+            getIPLocData(){
+              axios({
+                  method: 'get',
+                  url: 'http://ip-api.com/json',
+                  headers: {'Content-Type': 'application/json'}
+                }).then((res)=>{return(res)}).catch((err)=>{return(err)})
+            },
+            goback(){
+                if (this.renderoption==0){
+                    this.renderoption=4
+                }else{
+                this.renderoption--
+                }
+            },
+            goforward(){
+                if (this.renderoption==4){
+                    this.renderoption=0
+                }else{
+                this.renderoption++
+                }
+            },
+          resetall(){
+            this.sizeselection=0
+            this.stepper=1
+            for (sentence in this.sentences){
+              this.sentences[sentence].placement=0
+              this.sentences[sentence].unselected=true
+            }
+            this.numberselected=0
+            this.renderoption=0
+            this.$refs.startform.reset()
+          },
+          dialogon: function(name){
+            this[name]=true
+          },
+
+          biggerboat(){
+            if (this.sizeselection=="More than 100 people."){
+              this.hydialog=true
+            } else {this.stepper=2}
+          },
+          biggerboatclose(){
+            this.hydialog=false
+            this.resetall()
+          },
+
+          colorcalc: function(index){
+            if (index==0){
+              return('green elevation-12')
+            }else{
+              return('green lighten-3')
+            }
+
+          },
+
+          calculatepreferences: function(){
+            for(option in this.options){
+              var opname=this.options[option].name
+              for(size in this.sizes){
+                this.options[option][this.sizes[size].moniker]=.35*this.sizes[size][opname]
+              }
+              for(sentence in this.sentences){
+                if(this.sentences[sentence].placement!=0){
+                  for(moniker in this.monikers){
+                    this.options[option][this.monikers[moniker]] += this.sentences[sentence][opname]*this.values[this.sentences[sentence].placement-1]
+                  }
+                }
+              }
+            }
+            this.$forceUpdate()
+          },
+
+          reorderplacement: function(numberx){
+            for (sentence in this.sentences){
+
+              if(this.sentences[sentence].placement>numberx){
+                this.sentences[sentence].placement--
+              }
+
+            }
+          },
+
+          flipstatusun: function(say) {
+            if (this.numberselected<5){
+            this.sentences[say].unselected=!this.sentences[say].unselected
+            this.sentences[say].placement=this.numberselected+1
+            this.numberselected++
+            this.calculatepreferences()
+            }
+          },
+
+          flipstatussel: function(say) {
+            this.sentences[say].unselected=!this.sentences[say].unselected
+            this.reorderplacement(this.sentences[say].placement)
+            this.sentences[say].placement=0
+            this.numberselected--
+            this.calculatepreferences()
+          }
+
+        },
+        beforeMount(){
+          this.calculatepreferences()
+        },
+
+        computed:{
+          sortedSentences: function(){
+            return this.sentences.concat().filter(a=>a.placement!=0).sort((a,b)=>a.placement-b.placement)
+          },
+          sortedtinyOptions: function(){
+            return this.options.concat().sort((a,b)=>b.tiny-a.tiny)
+          },
+          sortedsmallOptions: function(){
+            return this.options.concat().sort((a,b)=>b.small-a.small)
+          },
+          sortedmediumOptions: function(){
+            return this.options.concat().sort((a,b)=>b.medium-a.medium)
+          },
+          sortedlargeOptions: function(){
+            return this.options.concat().sort((a,b)=>b.large-a.large)
+          },
+    
+          binding () {
+            const binding = {}
+
+            if (this.$vuetify.breakpoint.mdAndDown) binding.column = true
+
+            return binding
+            },
+            minisize () {
+            
+
+            if (this.$vuetify.breakpoint.smAndDown) {
+                return ""
+            }
+
+            return "max-height:35%;min-height:300px"
+            },
+            minisize2 () {
+            
+
+            if (this.$vuetify.breakpoint.smAndDown) {
+                return ""
+            }
+
+            return "max-height:85%; overflow-y: scroll;"
+            },
+
+            minisize3 () {
+            const btnsize={}
+            if (this.$vuetify.breakpoint.smAndDown) {
+                btnsize.small=true
+            }else{
+                btnsize.small=false
+                btnsize.large=false
+            }
+            return btnsize
+            },
+            fullwidthfunc () {
+            if (this.$vuetify.breakpoint.smAndDown) {
+               return ""
+            }
+            return ""
+            },
+            widther(){
+            if (this.$vuetify.breakpoint.smAndDown) {
+               return "pa-1"
+            }else{return ("")}
+
+            },
+            widtherright(){
+            if (this.$vuetify.breakpoint.smAndDown) {
+               return ""
+            }else{return ("mr-2")}
+
+            },
+            widtherleft(){
+            if (this.$vuetify.breakpoint.smAndDown) {
+               return ""
+            }else{return ("ml-2")}
+
+            },
+            centerer(){
+            if (this.$vuetify.breakpoint.smAndDown) {
+               return ""
+            }else{return ("align-center")}
+
+            },
+
+            sizeselector(){
+                return this.sizeoptions.findIndex((a)=>a==this.sizeselection)
+            },
+            sizetodisplay(){
+                return this.sizes[this.sizeselector]
+            },
+            rightoption(){
+              
+              if (this.sizeselector==0){
+                return this.sortedtinyOptions[this.renderoption]
+              }
+              else if(this.sizeselector==1){
+                return this.sortedsmallOptions[this.renderoption]
+              } else if(this.sizeselector==2){
+                return this.sortedmediumOptions[this.renderoption]
+              } else if(this.sizeselector==3){
+                return this.sortedlargeOptions[this.renderoption]
+              }
+
+              return this.options[4]
+                
+            }
+
+        }
+        
+      });
+
+    }
+  </script>
+</body> 
+</html>
